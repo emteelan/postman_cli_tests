@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: CLI Connection Demo
+  version: 1.0.0
+  contact: { "url": "https://nadanadalimonada.example" }
+servers:
+  - url: https://nadanadalimonada.example
+  - url: https://nadanadalimonada-staging.example
+paths:
+  /cli_status:
+    get:
+      tags:
+        - cli_status
+        - tag1
+      summary: Status of CLI connection
+      description: Call this endpoint to view status of CLI connection status
+      operationId: /cli_status
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The status of this CLI connection is {{cli_status}}
+              examples:
+                Success:
+                  value:
+                    message: {[cli_status]}
+security:
+  - ApiKey: [x-api-key]
+tags: 
+  [ 
+    {
+    "name":"tag1",
+    "description": "first tag"
+    },
+    {
+    "name":"tag2",
+    "description": "second tag"
+    },
+    {
+    "name":"cli_status",
+    "description": "tag to get status of CLI object"
+    }
+]
